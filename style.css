@@ -151,3 +151,6 @@ a { color: inherit; }
 .gallery-grid img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; box-shadow: 0 12px 30px rgba(90,53,36,.12); }
 .gallery-grid figcaption { margin-top: 10px; font-family: var(--serif); font-size: 1.15rem; color: var(--brown); text-align: center; }
 @media (max-width: 720px) { .gallery-grid { grid-template-columns: 1fr; } }
+.gallery-grid img.pos-top { object-position: 50% 0%; }
+.gallery-grid img.pos-low { object-position: 50% 62%; }
+.credit { font-family: var(--sans); font-size: .75rem; color: var(--muted); letter-spacing: .02em; }
