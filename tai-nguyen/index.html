@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tài nguyên học tập – An Yên</title>
+  <meta name="description" content="Bài viết về lịch sử chuông xoay Nepal, cách sử dụng chuông, phương pháp thiền, chánh niệm và trí tuệ cảm xúc từ An Yên.">
+  <meta name="theme-color" content="#f6f1ea">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="../index.html" aria-label="An Yên – về trang chủ">An Yên</a>
+  <button class="nav-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  <nav id="menu" class="nav">
+    <a href="../index.html#triet-ly">Triết lý</a>
+    <a href="../index.html#chuong-trinh">Chương trình</a>
+    <a href="../index.html#nhanh">Ba nhánh</a>
+    <a href="./" aria-current="page">Tài nguyên</a>
+    <a class="nav-cta" href="../index.html#lien-he">Liên hệ</a>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap narrow">
+      <p class="eyebrow">Tài nguyên học tập</p>
+      <h1>Đọc chậm, hiểu sâu, thực hành nhẹ nhàng</h1>
+      <p class="lead">Nơi An Yên chia sẻ những bài viết về chuông xoay, thiền, chánh niệm và trí tuệ cảm xúc, để bạn có thể tự học và tự thực hành tại nhà.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>Bốn chủ đề</h2>
+      <div class="topic-grid">
+        <div class="topic">
+          <h3>Lịch sử chuông xoay Nepal</h3>
+          <p>Nguồn gốc, chất liệu, cách chế tác và vị trí của chuông xoay trong văn hóa vùng Himalaya.</p>
+        </div>
+        <div class="topic">
+          <h3>Cách sử dụng chuông</h3>
+          <p>Cách cầm, gõ, xoay chuông, cách lắng nghe và chăm sóc chuông cho người mới bắt đầu.</p>
+        </div>
+        <div class="topic">
+          <h3>Thiền và chánh niệm</h3>
+          <p>Các phương pháp thực hành đơn giản, từ hơi thở, ăn chánh niệm đến những khoảng lặng giữa ngày.</p>
+        </div>
+        <div class="topic">
+          <h3>Trí tuệ cảm xúc</h3>
+          <p>Nhận diện cảm xúc, giao tiếp tích cực và chăm sóc tâm trí, dựa trên nền tảng khoa học.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section posts-section">
+    <div class="wrap narrow">
+      <h2>Bài viết</h2>
+      <!-- Danh sách bài viết: thêm từng thẻ <article class="post-card"> tại đây -->
+      <div id="post-list" class="post-list">
+        <p class="muted">Những bài viết đầu tiên đang được chuẩn bị và sẽ được đăng dần tại đây.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p class="footer-brand">An Yên</p>
+  <p>Âm thanh chạm đến nơi đôi tay không thể.</p>
+  <p class="small">© <span id="year">2026</span> An Yên. Bảo lưu mọi quyền.</p>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('menu');
+    btn.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
