@@ -97,7 +97,7 @@ a { color: inherit; }
 /* About */
 .about { background: var(--cream); }
 .about-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: center; }
-.about-photo { aspect-ratio: 4 / 5; border-radius: 6px; background: linear-gradient(160deg, var(--sage), var(--olive)); opacity: .85; }
+.about-photo { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; border-radius: 6px; box-shadow: 0 16px 40px rgba(90,70,54,.15); }
 
 /* Channel & Contact */
 .channel { text-align: center; }
