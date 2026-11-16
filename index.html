@@ -174,7 +174,44 @@
       <p class="eyebrow">Liên hệ</p>
       <h2>Bắt đầu bằng một cuộc trò chuyện</h2>
       <p>Bạn muốn tham gia một buổi tắm âm, mời An Yên đến đơn vị của mình, hoặc chỉ muốn hỏi thêm? Hãy để lại lời nhắn, An Yên sẽ phản hồi sớm.</p>
-      <p class="muted">Thông tin liên hệ (điện thoại/Zalo, email, biểu mẫu đăng ký) sẽ được cập nhật tại đây.</p>
+
+      <!-- Điền địa chỉ nhận biểu mẫu vào data-endpoint (ví dụ https://formspree.io/f/xxxxxxx) -->
+      <form id="contact-form" class="contact-form" data-endpoint="" novalidate>
+        <div class="field">
+          <label for="cf-name">Họ và tên</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="cf-phone">Số điện thoại / Zalo</label>
+            <input id="cf-phone" name="phone" type="tel" autocomplete="tel" required>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email <span class="opt">(không bắt buộc)</span></label>
+            <input id="cf-email" name="email" type="email" autocomplete="email">
+          </div>
+        </div>
+        <div class="field">
+          <label for="cf-topic">Bạn quan tâm đến</label>
+          <select id="cf-topic" name="topic">
+            <option>Buổi tắm âm</option>
+            <option>Khóa học / workshop kỹ năng mềm</option>
+            <option>Thiền, chánh niệm và yoga</option>
+            <option>Trà sen An Yên</option>
+            <option>Mời An Yên đến đơn vị của tôi</option>
+            <option>Nội dung khác</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cf-message">Lời nhắn</label>
+          <textarea id="cf-message" name="message" rows="5"></textarea>
+        </div>
+        <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn btn-rose" type="submit">Gửi lời nhắn</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- Mã QR liên hệ sẽ được thêm vào đây khi có ảnh -->
     </div>
   </section>
 
@@ -201,6 +238,40 @@
       }
     });
     document.getElementById('year').textContent = new Date().getFullYear();
+    var form = document.getElementById('contact-form');
+    var statusEl = document.getElementById('form-status');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      statusEl.className = 'form-status';
+      var endpoint = form.getAttribute('data-endpoint');
+      if (!form.name.value.trim() || !form.phone.value.trim()) {
+        statusEl.textContent = 'Vui lòng nhập họ tên và số điện thoại/Zalo.';
+        statusEl.className = 'form-status err';
+        return;
+      }
+      if (form._gotcha.value) { return; }
+      if (!endpoint) {
+        statusEl.textContent = 'Biểu mẫu đang được kích hoạt. Vui lòng quay lại sau ít phút.';
+        statusEl.className = 'form-status err';
+        return;
+      }
+      var btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
+      statusEl.textContent = 'Đang gửi…';
+      fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) { throw new Error('bad'); }
+          form.reset();
+          statusEl.textContent = 'Cảm ơn bạn. An Yên đã nhận được lời nhắn và sẽ phản hồi sớm.';
+          statusEl.className = 'form-status ok';
+        })
+        .catch(function () {
+          statusEl.textContent = 'Chưa gửi được. Bạn vui lòng thử lại sau.';
+          statusEl.className = 'form-status err';
+        })
+        .finally(function () { btn.disabled = false; });
+    });
+
   })();
 </script>
 </body>
